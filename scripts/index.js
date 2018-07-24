@@ -246,16 +246,17 @@ const generateVideoItemHtml = function(video) {
     </li>
   `;  
 };
-const decoratedVideo = decorateResponse(mockData)[0];
-console.log(generateVideoItemHtml(decoratedVideo));
+const decoratedVideo = decorateResponse(mockData);
+// console.log(generateVideoItemHtml(decoratedVideo));
 
 // TASK:
 // 1. Create a `addVideosToStore` function that receives an array of decorated video 
 // objects and sets the array as the value held in store.videos
 // TEST IT!
 const addVideosToStore = function(videos) {
-
+  store.videos = videos;
 };
+addVideosToStore(decoratedVideo);
 
 // TASK:
 // 1. Create a `render` function
