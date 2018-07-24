@@ -1,6 +1,6 @@
 'use strict';
-/* global $ store setVideos api*/
-const API_KEY = 'AIzaSyCkyNYYCLfSOR83jC4PN6TAAzQNwmun6Ko';
+/* global $ store setVideos api videoList*/
+/*const API_KEY = 'AIzaSyCkyNYYCLfSOR83jC4PN6TAAzQNwmun6Ko';
 
 const mockData = {
   'kind': 'youtube#searchListResponse',
@@ -179,7 +179,7 @@ const mockData = {
     }
   ]
 };
-/*
+
   We want our store to hold a `videos` array of "decorated" objects - i.e. objects that
   have been transformed into just the necessary data to display on our page, compared to the large
   dataset Youtube will deliver to us.  Example object:
@@ -188,7 +188,7 @@ const mockData = {
     title: 'Cats dancing the Macarena',
     thumbnail: 'https://img.youtube.com/some/thumbnail.jpg'
   }
-*/
+
 // const store = {
 //   videos: []
 // };
@@ -285,11 +285,12 @@ const handleFormSubmit = function() {
     });
   });
 };
+*/
 
 // When DOM is ready:
 $(function () {
   // TASK:
   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
-  handleFormSubmit();
+  videoList.bindEventListeners();
 });
 
