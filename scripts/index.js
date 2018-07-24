@@ -264,9 +264,10 @@ addVideosToStore(decoratedVideo);
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
 const render = function() {
-
+  const htmlString = store.videos.map(video => generateVideoItemHtml(video));
+  $('.results').html(htmlString);
 };
-
+render();
 // TASK:
 // 1. Create a `handleFormSubmit` function that adds an event listener to the form
 // 2. The listener should:
