@@ -268,6 +268,7 @@ const render = function() {
   $('.results').html(htmlString);
 };
 render();
+
 // TASK:
 // 1. Create a `handleFormSubmit` function that adds an event listener to the form
 // 2. The listener should:
@@ -280,8 +281,21 @@ render();
 //   g) Inside the callback, run the `render` function 
 // TEST IT!
 const handleFormSubmit = function() {
-
+  $('form').submit(function(event) {
+    event.preventDefault();
+    let searchedInput = $(event.currentTarget).find('#search-term');
+    const searched = searchedInput.val();
+    searchedInput.val('');
+    console.log(searched);
+    fetchVideos(searched, function(response) {
+      const decorated = decorateResponse(response);
+      addVideosToStore(decorated);
+      render();
+    });
+  });
 };
+handleFormSubmit();
+
 
 // When DOM is ready:
 $(function () {
