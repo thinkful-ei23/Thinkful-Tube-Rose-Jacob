@@ -201,7 +201,7 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 // 2. Use `searchTerm` to construct the right query object based on the Youtube API docs
 // 3. Make a getJSON call using the query object and sending the provided callback in as the last argument
 // TEST IT! Execute this function and console log the results inside the callback.
-const fetchVideos = function(searchTerm, callback) {
+/*const fetchVideos = function(searchTerm, callback) {
   const query = {
     part : 'snippet',
     key : 'AIzaSyCkyNYYCLfSOR83jC4PN6TAAzQNwmun6Ko',
@@ -209,7 +209,7 @@ const fetchVideos = function(searchTerm, callback) {
     type: '',
   };
   $.getJSON(BASE_URL, query, callback);
-};
+};*/
 
 // fetchVideos('cat', (response) => console.log(response));
 // TASK:
