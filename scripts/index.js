@@ -1,5 +1,5 @@
 'use strict';
-/* global $ */
+/* global $ store setVideos*/
 const API_KEY = 'AIzaSyCkyNYYCLfSOR83jC4PN6TAAzQNwmun6Ko';
 
 const mockData = {
@@ -179,23 +179,19 @@ const mockData = {
     }
   ]
 };
-
 /*
   We want our store to hold a `videos` array of "decorated" objects - i.e. objects that
   have been transformed into just the necessary data to display on our page, compared to the large
   dataset Youtube will deliver to us.  Example object:
-  
   {
     id: '98ds8fbsdy67',
     title: 'Cats dancing the Macarena',
     thumbnail: 'https://img.youtube.com/some/thumbnail.jpg'
   }
-
 */
-const store = {
-  videos: []
-};
-
+// const store = {
+//   videos: []
+// };
 // TASK: Add the Youtube Search API Base URL here:
 // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
@@ -238,25 +234,20 @@ const decorateResponse = function(response) {
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
-const generateVideoItemHtml = function(video) {
-  return `
-    <li data-video-id="${video.id}">
+const generateVideoItemHtml = (video =>
+  ` <li data-video-id="${video.id}">
       <h3>${video.title}</h3>
       <img src="${video.thumbnail}" />
     </li>
-  `;  
-};
-const decoratedVideo = decorateResponse(mockData);
-// console.log(generateVideoItemHtml(decoratedVideo));
+  `);  
 
 // TASK:
 // 1. Create a `addVideosToStore` function that receives an array of decorated video 
 // objects and sets the array as the value held in store.videos
 // TEST IT!
-const addVideosToStore = function(videos) {
-  store.videos = videos;
-};
-addVideosToStore(decoratedVideo);
+// const addVideosToStore = function(videos) {
+//   store.videos = videos;
+// };
 
 // TASK:
 // 1. Create a `render` function
@@ -267,7 +258,6 @@ const render = function() {
   const htmlString = store.videos.map(video => generateVideoItemHtml(video));
   $('.results').html(htmlString);
 };
-render();
 
 // TASK:
 // 1. Create a `handleFormSubmit` function that adds an event listener to the form
@@ -286,19 +276,19 @@ const handleFormSubmit = function() {
     let searchedInput = $(event.currentTarget).find('#search-term');
     const searched = searchedInput.val();
     searchedInput.val('');
-    console.log(searched);
     fetchVideos(searched, function(response) {
       const decorated = decorateResponse(response);
-      addVideosToStore(decorated);
+      // addVideosToStore(decorated);
+      store.setVideos(decorated);
       render();
     });
   });
 };
-handleFormSubmit();
-
 
 // When DOM is ready:
 $(function () {
   // TASK:
   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
+  handleFormSubmit();
 });
+
