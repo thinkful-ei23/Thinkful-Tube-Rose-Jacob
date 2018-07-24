@@ -12,7 +12,7 @@ const videoList = (function() {
   };
 
   const render = function() {
-    const htmlString = store.video.map(video => generateListItem(video));
+    const htmlString = store.videos.map(video => generateListItem(video));
     $('.results').html(htmlString);
   };
 
